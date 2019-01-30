@@ -18,7 +18,7 @@ class FriendsListView extends React.Component {
                 {this.props.isFetchingFriends && (
                     <h1>Loading.....</h1>
                 )}
-                {this.props.Friends && (
+                {this.props.friends && (
                     <div className="friends-wrapper">
                         <FriendsList friends={this.props.friends}/>
                     </div>

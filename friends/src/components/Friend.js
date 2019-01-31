@@ -6,6 +6,12 @@ const Friend = props => {
         if(props.isUpdating && props.friendId === props.friend.id){
             return <FormView />
         }
+        return (
+            <form>
+                <button onClick={e => props.populateForm(e, props.friend.id)}>Update</button>
+                <button onClick={e => props.deleteFriend(e, props.friend.id)}>Delete</button>
+            </form>
+        );
     }
     return (
         <div className="friend-wrapper">
@@ -13,8 +19,6 @@ const Friend = props => {
             <h2>Email: {props.friend.email}</h2>
             <h2>Age: {props.friend.age}</h2>  
             {renderUpdateForm()}
-            <button onClick={e => props.populateForm(e, props.friend.id)}>Update</button>
-            <button onClick={e => props.deleteFriend(e, props.friend.id)}>Delete</button>
         </div>
     );
 }

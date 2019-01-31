@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { FriendsList } from "../components";
-import { getFriends, deleteFriend } from '../store/actions';
+import { getFriends, deleteFriend, populateForm} from '../store/actions';
 
 
 class FriendsListView extends React.Component {
@@ -18,9 +18,9 @@ class FriendsListView extends React.Component {
 
     populateForm = (e, id) => {
         e.preventDefault();
-        const tempFriend = this.props.friends.find(friend => friend.id === id);
+        // const tempFriend = this.props.friends.find(friend => friend.id === id);
         
-        this.props.updateFriend(tempFriend, id)
+        this.props.populateForm(id)
         // this.setState({ 
         //   name: tempFriend.name,
         //   email: tempFriend.email,
@@ -39,7 +39,7 @@ class FriendsListView extends React.Component {
                 )}
                 {this.props.friends && (
                     <div className="friends-wrapper">
-                        <FriendsList friends={this.props.friends} updateFriend={this.updateFriend} deleteFriend={this.deleteFriend} populateForm={this.populateForm} />
+                        <FriendsList friends={this.props.friends} deleteFriend={this.deleteFriend} populateForm={this.populateForm} isUpdating={this.props.isUpdating } friendId={this.props.friendId}/>
                     </div>
                 )}
             </>
@@ -49,10 +49,12 @@ class FriendsListView extends React.Component {
 
 const mapStateToProps = state => ({
     friends: state.friendsReducer.friends,
-    isFetchingFriends: state.friendsReducer.isFetchingFriends
+    isFetchingFriends: state.friendsReducer.isFetchingFriends,
+    isUpdating: state.friendsReducer.isUpdating,
+    friendId: state.friendsReducer.friendId
 });
 
 export default connect(
     mapStateToProps,
-    { getFriends, deleteFriend }
+    { getFriends, deleteFriend, populateForm }
 )(FriendsListView);

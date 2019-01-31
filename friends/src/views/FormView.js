@@ -2,15 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { Form } from "../components";
-import { addNewFriend } from '../actions';
+import { addNewFriend, updateFriend } from '../store/actions';
 
 class FormView extends React.Component {
     state = {
         name: '',
         age: '',
         email: '',
-        friendId: '',
-        isUpdating: false
+        friendId: this.props.friendId,
+        isUpdating: this.props.isUpdating
     };
 
     handleInput = e => {
@@ -37,20 +37,22 @@ class FormView extends React.Component {
         this.setState({ name: '', age: '', email: '' });
     }
 
+    componentDidMount(){
+        if(this.state.isUpdating){
+            const tempFriend = this.props.friends.find(friend => friend.id === this.state.friendId);
+            this.setState({ 
+                name: tempFriend.name,
+                email: tempFriend.email,
+                age: tempFriend.age,
+                friendId: tempFriend.id
+            });
+        }
+    } 
+    updateFriend = (id) => {
+        const updatedFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
+        this.props.updateFriend(updatedFriend, id);        
+    }
 
-    // updateFriend = (id) => {
-    //     const updatedFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
-
-    //     axios
-    //     .put(`http://localhost:5000/friends/${id}`, updatedFriend)
-    //     .then(res => {
-    //         this.setState({friends: res.data, name: '', age: '', email: '', isUpdating:false});
-    //         this.props.history.push("/");
-    //     })
-    //     .catch(err => {
-    //         console.log(err.response);
-    //     })
-    // }
     render(){
         return (
             <Form 
@@ -68,9 +70,11 @@ class FormView extends React.Component {
 }
 const mapStateToProps = state => ({
     friends: state.friendsReducer.friends,
+    isUpdating: state.friendsReducer.isUpdating,
+    friendId: state.friendsReducer.friendId
 });
 
 export default connect(
     mapStateToProps,
-    { addNewFriend }
+    { addNewFriend, updateFriend }
 )(FormView);

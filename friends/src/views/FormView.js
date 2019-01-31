@@ -34,6 +34,7 @@ class FormView extends React.Component {
     addNewFriend = () => {
         const newFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
         this.props.addNewFriend(newFriend)
+        this.setState({ name: '', age: '', email: '' });
     }
 
     // updateFriend = (id) => {

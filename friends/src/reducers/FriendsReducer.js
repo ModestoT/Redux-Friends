@@ -9,7 +9,7 @@ import {
 
 const initialState = {
     friends: [],
-    fetchingFriends: false,
+    isFetchingFriends: false,
     isAddingFriend: false,
     error: ''
 };
@@ -20,7 +20,7 @@ export const friendsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: '',
-                fetchingFriends: true
+                isFetchingFriends: true
             };
 
         case FETCHING_FRIENDS_SUCCESS: 
@@ -28,13 +28,13 @@ export const friendsReducer = (state = initialState, action) => {
                 ...state,
                 friends: action.payload,
                 error: '',
-                fetchingFriends: false
+                isFetchingFriends: false
             }
         case FETCHING_FRIENDS_FAILURE:
             return {
                 ...state,
                 error: action.payload,
-                fetchingFriends: false
+                isFetchingFriends: false
             };
         case ADDING_FRIEND:
             return {

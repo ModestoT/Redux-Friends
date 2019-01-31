@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { FriendsList } from "../components";
-import { getFriends } from '../actions';
+import { getFriends, deleteFriend } from '../actions';
 
 
 class FriendsListView extends React.Component {
@@ -10,6 +10,11 @@ class FriendsListView extends React.Component {
     componentDidMount() {
         this.props.getFriends();
     }
+
+    deleteFriend = (e, id) => {
+        e.preventDefault();
+        this.props.deleteFriend(id);
+      }
 
     render() {
         return (
@@ -20,7 +25,7 @@ class FriendsListView extends React.Component {
                 )}
                 {this.props.friends && (
                     <div className="friends-wrapper">
-                        <FriendsList friends={this.props.friends}/>
+                        <FriendsList friends={this.props.friends} updateFriend={this.updateFriend} deleteFriend={this.deleteFriend} populateForm={this.populateForm} />
                     </div>
                 )}
             </>
@@ -35,5 +40,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getFriends }
+    { getFriends, deleteFriend }
 )(FriendsListView);

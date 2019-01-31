@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { FriendsList } from "../components";
-import { getFriends, deleteFriend } from '../actions';
+import { getFriends, deleteFriend } from '../store/actions';
 
 
 class FriendsListView extends React.Component {
@@ -14,7 +14,21 @@ class FriendsListView extends React.Component {
     deleteFriend = (e, id) => {
         e.preventDefault();
         this.props.deleteFriend(id);
-      }
+    }
+
+    populateForm = (e, id) => {
+        e.preventDefault();
+        const tempFriend = this.props.friends.find(friend => friend.id === id);
+        
+        this.props.updateFriend(tempFriend, id)
+        // this.setState({ 
+        //   name: tempFriend.name,
+        //   email: tempFriend.email,
+        //   age: tempFriend.age,
+        //   friendId: tempFriend.id,
+        //   isUpdating: true
+        // });
+    }
 
     render() {
         return (

@@ -37,6 +37,7 @@ class FormView extends React.Component {
         this.setState({ name: '', age: '', email: '' });
     }
 
+
     // updateFriend = (id) => {
     //     const updatedFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
 
@@ -65,7 +66,9 @@ class FormView extends React.Component {
         );
     }
 }
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+    friends: state.friendsReducer.friends,
+});
 
 export default connect(
     mapStateToProps,

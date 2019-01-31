@@ -7,7 +7,7 @@ import logger from 'redux-logger';
 
 import './index.css';
 import App from './App';
-import rootReducer from "./reducers";
+import rootReducer from "./store/reducers";
 
 const store = createStore(
     rootReducer,

@@ -30,7 +30,6 @@ class FriendsListView extends React.Component {
 
 const mapStateToProps = state => ({
     friends: state.friendsReducer.friends,
-    error: state.friendsReducer.error,
     isFetchingFriends: state.friendsReducer.isFetchingFriends
 });
 

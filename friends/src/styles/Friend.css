@@ -1,0 +1,28 @@
+
+.friend-wrapper {
+    border: 1px solid;
+    border-radius: 3px;
+    margin-bottom: 5%;
+}
+
+.friend-btns {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+.friend-wrapper .friend-btns {
+    opacity: 0;
+}
+.friend-wrapper:hover .friend-btns{
+    opacity: 1;
+}
+.friend-btns button {
+    width: 20%;
+    margin: 0 2%;
+    padding: 2%;
+
+}
+
+.delete-btn {
+    background: red;
+}

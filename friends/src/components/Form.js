@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import '../styles/Form.css';
 
 function Form (props) {    
     function handleSumbit(e){

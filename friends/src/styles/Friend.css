@@ -3,6 +3,7 @@
     border: 1px solid;
     border-radius: 3px;
     margin-bottom: 5%;
+    width: 76%;   
 }
 
 .friend-btns {
@@ -25,4 +26,8 @@
 
 .delete-btn {
     background: red;
+}
+
+.friend-wrapper .form-wrapper {
+    width: 61%;
 }
